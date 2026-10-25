@@ -49,4 +49,26 @@ public class ProductApiClient {
                 .extract()
                 .response();
     }
+
+    public Response createProduct(Object requestBody) {
+        return given()
+                .spec(RequestSpecFactory.getJsonRequestSpecification())
+                .body(requestBody)
+                .when()
+                .post("/products/add")
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response deleteProduct(int productId) {
+        return given()
+                .spec(RequestSpecFactory.getRequestSpecification())
+                .when()
+                .delete("/products/" + productId)
+                .then()
+                .extract()
+                .response();
+    }
+
 }
